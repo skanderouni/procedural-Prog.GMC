@@ -1,0 +1,58 @@
+// Procedure dot_product
+PROCEDURE dot_product(V : ARRAY_OF INTEGER ,i: INTEGER , Var ps:INTEGER)
+BEGIN
+    ps = V[i][0]*V[i+1][0] + V[i][1]*V[i+1][1];
+END
+
+// Fonction dot_product
+FUNCTION dot_product(V : ARRAY_OF INTEGER ,i: INTEGER) : INTEGER
+VAR
+    Produit : INTEGER;
+    p,k,j : INTEGER;
+
+BEGIN
+
+    Produit = 0;
+    p = 0;
+    FOR k FROM i TO i+1 STEP 1  DO
+        FOR j FROM 0 TO 1 STEP 1  DO
+            p =p * V[i][j];
+        END_FOR
+        Produit = Produit + p;
+    END_FOR
+
+    RETURN Produit ;
+END
+
+ALGORITHM dot
+VAR
+    v : ARRAY_OF INTEGER[1][2];
+    
+    ps,i : INTEGER;
+    
+BEGIN
+    FOR i FROM 0 TO n-1 STEP step  DO
+        write ("donner X"); read (v[i][0])
+        write ("donner Y"); read (v[i][1])
+    END_FOR
+
+// Appel de la Procedure 
+    FOR i FROM 0 TO n-2 STEP 1  DO
+        ps = 0;
+        dot_product(V ,i ,ps)
+        IF (ps = 0) THEN
+            write("le vecteur V",i,"et le vecteur V",i+1,"sont orthogonaux")
+        END_IF
+    END_FOR
+
+// Appel de la Fonction
+
+    FOR i FROM 0 TO n-2 STEP 1  DO
+        ps = 0;
+        ps = dot_product(V ,i);
+        IF (ps = 0) THEN
+            write("le vecteur V",i,"et le vecteur V",i+1,"sont orthogonaux")
+        END_IF
+    END_FOR
+
+END
